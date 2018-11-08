@@ -1,3 +1,8 @@
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
 var twoSum = function(nums, target) {
     var result=[];
     for(var i=0;i<nums.length-1;i++){
@@ -11,4 +16,10 @@ var twoSum = function(nums, target) {
     }
     return false;
 };
-console.log(twoSum([2, 3, 5, 5], 8));
+var getTime = function(func, nums, target) {
+    let start = new Date();
+    console.log(func(nums, target));
+    let end = new Date();
+    console.log('运行时间: ' + (end - start));
+}
+console.log(getTime(twoSum,[2, 3, 5, 5], 8));

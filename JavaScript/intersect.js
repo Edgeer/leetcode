@@ -20,12 +20,3 @@ var intersect = function(nums1, nums2) {
     }
     return result;
 };
-var intersect2 = function(num1, num2){
-    // ES5
-    // var intersection = a.filter(function(v){
-    // return b.indexOf(v)!==-1
-    // });
-    let intersection = num1.filter(v => num2.includes(v));
-    return intersection;
-}
-console.log(intersect2([1,2,3,4],[2,3]));

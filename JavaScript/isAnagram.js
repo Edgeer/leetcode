@@ -5,6 +5,9 @@
  */
 var isAnagram = function(s, t) {
     var arr=[],key;
+    if(s.length !== t.length){
+        return false;
+    }
     for (var i in s){
         key = s[i];
         if (arr[key] >=1){
@@ -24,4 +27,4 @@ var isAnagram = function(s, t) {
     return true;
 };
 
-console.log(isAnagram("abc","acbd"));
+console.log(isAnagram("abcc","acb"));

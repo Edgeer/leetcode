@@ -29,26 +29,41 @@ function toString (head){
     }
 }
 /**
- * 翻转链表
+ * 翻转链表 头插法
  * @param {ListNode} head
  * @return {ListNode}
  */
 var reverseList = function(head) {
-    var q = head;
     var p;
     var result = null;
-    while(q !== null){
-        p = new ListNode(q.val);
+    while(head !== null){
+        p = new ListNode(head.val);
         if(result === null){
             result = new ListNode(p.val);
         }else{
             p.next = result;
             result = p;
         }
-        q = q.next;
+        head = head.next;
     }
     return result;
 };
+/**
+ * 
+ * @param {ListNode} head 
+ * @returns {ListNode}
+ * 
+ */
+var reverseList2 = function (head) {
+    var result = null;
+    while(head !== null){
+        var temp = head.next;
+        head.next = result;
+        result = head;
+        head = temp;
+    }
+    return result;
+}
 /**
  * 从链表末尾删除n位
  * @param  {ListNode} head
@@ -71,6 +86,30 @@ var removeNthFromEnd = function(head,n) {
         q2 = q2.next;
     }
     q2.next = q2.next.next;
+};
+/**
+ * 回文链表
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+    if(head === null){
+        return null;
+    }
+    var q = head,p = head;
+    while(p !== null && p.next!== null){ // 找出中间节点
+        q = q.next;
+        p = p.next.next; 
+    }
+    q = reverseList2(q); // 后一半翻转链表
+    while(q !== null && head !== null){
+        if(q.val !== head.val){
+            return false;
+        }
+        q = q.next;
+        head = head.next;
+    }
+    return true;
 };
 /**
  * 合并两个有序链表
@@ -96,9 +135,10 @@ var mergeTwoLists = function(l1, l2) {
 };
 var head = new ListNode(1);
 append(head,2);
-append(head,3);
-removeNthFromEnd(head,2);
-toString(head);
-// toString(reverseList(head));
-var merge = mergeTwoLists(head,head);
-toString(merge);
+append(head,1);
+// removeNthFromEnd(head,2);
+// toString(head);
+// // toString(reverseList(head));
+// var merge = mergeTwoLists(head,head);
+// toString(merge);
+console.log(isPalindrome(head));

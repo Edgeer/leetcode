@@ -49,7 +49,7 @@ var reverseList = function(head) {
     return result;
 };
 /**
- * 
+ * 翻转链表 原地翻转
  * @param {ListNode} head 
  * @returns {ListNode}
  * 
@@ -57,10 +57,10 @@ var reverseList = function(head) {
 var reverseList2 = function (head) {
     var result = null;
     while(head !== null){
-        var temp = head.next;
-        head.next = result;
-        result = head;
-        head = temp;
+        var temp = head.next; //保留除头结点以外的原来的链表
+        head.next = result;   //头结点下一个指向新的链表
+        result = head;        //新链表指向头结点，实现头插法
+        head = temp;          //head指向下一个结点
     }
     return result;
 }
@@ -112,6 +112,27 @@ var isPalindrome = function(head) {
     return true;
 };
 /**
+ * 判断是否有环
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+    if(head === null){
+        return false;
+    }
+    var p = head;
+    var q = head;
+    //两个指针 分别跑一个快一个慢，如果有环总会相遇的
+    while(p.next !== null && p.next.next !== null){
+        p = p.next.next;
+        q = q.next;
+        if(p === q){
+            return true;
+        } 
+    }
+    return false;
+};
+/**
  * 合并两个有序链表
  * @param {ListNode} l1
  * @param {ListNode} l2
@@ -136,9 +157,10 @@ var mergeTwoLists = function(l1, l2) {
 var head = new ListNode(1);
 append(head,2);
 append(head,1);
+head.next = head;
 // removeNthFromEnd(head,2);
 // toString(head);
 // // toString(reverseList(head));
 // var merge = mergeTwoLists(head,head);
 // toString(merge);
-console.log(isPalindrome(head));
+console.log(hasCycle(head));

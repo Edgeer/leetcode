@@ -1,3 +1,4 @@
+//链表相关算法
 function ListNode(val){
     this.val = val;
     this.next = null;
@@ -5,16 +6,16 @@ function ListNode(val){
 
 function append(head,val){
     var node = new ListNode(val);
-        var q;
-        if(head === null){
-            head = node;
-        } else{
-            q = head;
-            while(q.next !== null){
-                q = q.next;
-            }
-            q.next = node;
+    var q;
+    if(head === null){
+        head = node;
+    } else{
+        q = head;
+        while(q.next !== null){
+            q = q.next;
         }
+        q.next = node;
+    }
 }
 function toString (head){
     var q;
@@ -162,5 +163,5 @@ head.next = head;
 // toString(head);
 // // toString(reverseList(head));
 // var merge = mergeTwoLists(head,head);
-// toString(merge);
+// toString(head);
 console.log(hasCycle(head));
